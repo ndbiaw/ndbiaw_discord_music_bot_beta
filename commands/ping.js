@@ -1,8 +1,8 @@
 module.exports = {
   name: "ping",
   cooldown: 10,
-  description: "Show the bot's average ping",
+  description: "Hiển thị ping của bot.",
   execute(message) {
-    message.reply(`📈 Average ping to API: ${Math.round(message.client.ws.ping)} ms`).catch(console.error);
+    message.reply(`📈 Ping trung bình đến API: ${Math.round(message.client.ws.ping)} ms`).catch(console.error);
   }
 };
