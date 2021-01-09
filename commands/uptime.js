@@ -1,7 +1,7 @@
 module.exports = {
   name: "uptime",
   aliases: ["u"],
-  description: "Check the uptime",
+  description: "Kiểm tra thời gian bot online",
   execute(message) {
     let seconds = Math.floor(message.client.uptime / 1000);
     let minutes = Math.floor(seconds / 60);
@@ -13,7 +13,7 @@ module.exports = {
     hours %= 24;
 
     return message
-      .reply(`Uptime: \`${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds\``)
+      .reply(`Đã online: \`${days} ngày,${hours} giờ, ${minutes} phút, ${seconds} giây\``)
       .catch(console.error);
   }
 };
