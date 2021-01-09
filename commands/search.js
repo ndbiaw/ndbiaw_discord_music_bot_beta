@@ -5,22 +5,22 @@ const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
 
 module.exports = {
   name: "search",
-  description: "Search and select videos to play",
+  description: "Tìm và chọn video để phát.",
   async execute(message, args) {
     if (!args.length)
       return message
-        .reply(`Usage: ${message.client.prefix}${module.exports.name} <Video Name>`)
+        .reply(`Sử dụng: ${message.client.prefix}${module.exports.name} <Tên Video>`)
         .catch(console.error);
     if (message.channel.activeCollector)
-      return message.reply("A message collector is already active in this channel.");
+      return message.reply("Lệnh đang hoạt động trong kênh này.");
     if (!message.member.voice.channel)
-      return message.reply("You need to join a voice channel first!").catch(console.error);
+      return message.reply("Bạn cần tham gia một kênh thoại trước!").catch(console.error);
 
     const search = args.join(" ");
 
     let resultsEmbed = new MessageEmbed()
-      .setTitle(`**Reply with the song number you want to play**`)
-      .setDescription(`Results for: ${search}`)
+      .setTitle(`**Gửi số bài nhạc bạn muốn phát.**`)
+      .setDescription(`Kết quả cho: ${search}`)
       .setColor("#F8AA2A");
 
     try {
