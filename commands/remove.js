@@ -5,13 +5,13 @@ const pattern = /^[0-9]{1,2}(\s*,\s*[0-9]{1,2})*$/g;
 module.exports = {
   name: "remove",
   aliases: ["rm"],
-  description: "Remove song from the queue",
+  description: "Xoá bài nhạc từ hàng đợi.",
   execute(message, args) {
     const queue = message.client.queue.get(message.guild.id);
-    if (!queue) return message.channel.send("There is no queue.").catch(console.error);
+    if (!queue) return message.channel.send("Không có hàng đợi nào.").catch(console.error);
     if (!canModifyQueue(message.member)) return;
 
-    if (!args.length) return message.reply(`Usage: ${message.client.prefix}remove <Queue Number>`);
+    if (!args.length) return message.reply(`Sử dụng: ${message.client.prefix}remove <Số Hàng Đợi>`);
 
     const arguments = args.join("");
     const songs = arguments.split(",").map((str) => str.trim());
@@ -27,14 +27,14 @@ module.exports = {
       });
 
       queue.textChannel.send(
-        `${message.author} ❌ removed **${removed.map((song) => song.title).join("\n")}** from the queue.`
+        `${message.author} ❌ đã xoá **${removed.map((song) => song.title).join("\n")}** khỏi hàng đợi.`
       );
     } else if (!isNaN(args[0]) && args[0] >= 1 && args[0] < queue.songs.length) {
       return queue.textChannel.send(
-        `${message.author} ❌ removed **${queue.songs.splice(args[0] - 1, 1)[0].title}** from the queue.`
+        `${message.author} ❌ đã xoá **${queue.songs.splice(args[0] - 1, 1)[0].title}** khỏi hàng đợi.`
       );
     } else {
-      return message.reply(`Usage: ${message.client.prefix}remove <Queue Number>`);
+      return message.reply(`Sử dụng: ${message.client.prefix}remove <Số Hàng Đợi>`);
     }
   }
 };
