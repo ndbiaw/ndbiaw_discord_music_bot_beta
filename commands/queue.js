@@ -4,14 +4,14 @@ module.exports = {
   name: "queue",
   cooldown: 5,
   aliases: ["q"],
-  description: "Show the music queue and now playing.",
+  description: "Hiển thị hàng đợi và bài nhạc đang phát.",
   async execute(message) {
     const permissions = message.channel.permissionsFor(message.client.user);
     if (!permissions.has(["MANAGE_MESSAGES", "ADD_REACTIONS"]))
-      return message.reply("Missing permission to manage messages or add reactions");
+      return message.reply("Không có quyền quản lý tin nhắn và thêm biểu cảm.");
 
     const queue = message.client.queue.get(message.guild.id);
-    if (!queue) return message.channel.send("❌ **Nothing playing in this server**");
+    if (!queue) return message.channel.send("❌ **Không có gì được phát trong máy chủ này!*");
 
     let currentPage = 0;
     const embeds = generateQueueEmbed(message, queue.songs);
@@ -39,12 +39,12 @@ module.exports = {
         if (reaction.emoji.name === "➡️") {
           if (currentPage < embeds.length - 1) {
             currentPage++;
-            queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+            queueEmbed.edit(`**Trang hiện tại - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
           }
         } else if (reaction.emoji.name === "⬅️") {
           if (currentPage !== 0) {
             --currentPage;
-            queueEmbed.edit(`**Current Page - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
+            queueEmbed.edit(`**Trang hiện tại - ${currentPage + 1}/${embeds.length}**`, embeds[currentPage]);
           }
         } else {
           collector.stop();
