@@ -20,7 +20,7 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
  */
 client.on("ready", () => {
   console.log(`${client.user.username} ready!`);
-  client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "LISTENING" });
+  client.user.setActivity(`${PREFIX}help - Phục Tùng Thảo Master`, { type: "LISTENING" });
 });
 client.on("warn", (info) => console.log(info));
 client.on("error", console.error);
@@ -78,6 +78,6 @@ client.on("message", async (message) => {
     command.execute(message, args);
   } catch (error) {
     console.error(error);
-    message.reply("There was an error executing that command.").catch(console.error);
+    message.reply("Có một lỗi với lệnh đó.").catch(console.error);
   }
 });
