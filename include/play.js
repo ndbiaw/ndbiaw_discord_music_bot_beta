@@ -22,9 +22,9 @@ module.exports = {
       setTimeout(function () {
         if (queue.connection.dispatcher && message.guild.me.voice.channel) return;
         queue.channel.leave();
-        queue.textChannel.send("Leaving voice channel...");
+        queue.textChannel.send("Đang thoát khỏi kênh thoại...");
       }, STAY_TIME * 1000);
-      queue.textChannel.send("❌ Music queue ended.").catch(console.error);
+      queue.textChannel.send("❌ danh sách nhạc đã hết.").catch(console.error);
       return message.client.queue.delete(message.guild.id);
     }
 
@@ -49,7 +49,7 @@ module.exports = {
       }
 
       console.error(error);
-      return message.channel.send(`Error: ${error.message ? error.message : error}`);
+      return message.channel.send(`Lỗi: ${error.message ? error.message : error}`);
     }
 
     queue.connection.on("disconnect", () => message.client.queue.delete(message.guild.id));
@@ -106,7 +106,7 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.connection.dispatcher.end();
-          queue.textChannel.send(`${user} ⏩ skipped the song`).catch(console.error);
+          queue.textChannel.send(`${user} ⏩ đã bỏ qua bài hát.`).catch(console.error);
           collector.stop();
           break;
 
@@ -116,11 +116,11 @@ module.exports = {
           if (queue.playing) {
             queue.playing = !queue.playing;
             queue.connection.dispatcher.pause(true);
-            queue.textChannel.send(`${user} ⏸ paused the music.`).catch(console.error);
+            queue.textChannel.send(`${user} ⏸ đã tạm dừng phát.`).catch(console.error);
           } else {
             queue.playing = !queue.playing;
             queue.connection.dispatcher.resume();
-            queue.textChannel.send(`${user} ▶ resumed the music!`).catch(console.error);
+            queue.textChannel.send(`${user} ▶ đã tiếp tục phát!`).catch(console.error);
           }
           break;
 
@@ -130,11 +130,11 @@ module.exports = {
           if (queue.volume <= 0) {
             queue.volume = 100;
             queue.connection.dispatcher.setVolumeLogarithmic(100 / 100);
-            queue.textChannel.send(`${user} 🔊 unmuted the music!`).catch(console.error);
+            queue.textChannel.send(`${user} 🔊 bỏ tắt tiếng nhạc!`).catch(console.error);
           } else {
             queue.volume = 0;
             queue.connection.dispatcher.setVolumeLogarithmic(0);
-            queue.textChannel.send(`${user} 🔇 muted the music!`).catch(console.error);
+            queue.textChannel.send(`${user} 🔇 tắt tiếng nhạc!`).catch(console.error);
           }
           break;
 
@@ -145,7 +145,7 @@ module.exports = {
           else queue.volume = queue.volume - 10;
           queue.connection.dispatcher.setVolumeLogarithmic(queue.volume / 100);
           queue.textChannel
-            .send(`${user} 🔉 decreased the volume, the volume is now ${queue.volume}%`)
+            .send(`${user} 🔉 giảm âm lượng, âm lượng hiện tại là ${queue.volume}%`)
             .catch(console.error);
           break;
 
@@ -156,7 +156,7 @@ module.exports = {
           else queue.volume = queue.volume + 10;
           queue.connection.dispatcher.setVolumeLogarithmic(queue.volume / 100);
           queue.textChannel
-            .send(`${user} 🔊 increased the volume, the volume is now ${queue.volume}%`)
+            .send(`${user} 🔊 tăng âm lượng, âm lượng hiện tại là ${queue.volume}%`)
             .catch(console.error);
           break;
 
@@ -164,14 +164,14 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.loop = !queue.loop;
-          queue.textChannel.send(`Loop is now ${queue.loop ? "**on**" : "**off**"}`).catch(console.error);
+          queue.textChannel.send(`Lặp lại đã ${queue.loop ? "**bật**" : "**tắt**"}`).catch(console.error);
           break;
 
         case "⏹":
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.songs = [];
-          queue.textChannel.send(`${user} ⏹ stopped the music!`).catch(console.error);
+          queue.textChannel.send(`${user} ⏹ dừng phát nhạc!`).catch(console.error);
           try {
             queue.connection.dispatcher.end();
           } catch (error) {
