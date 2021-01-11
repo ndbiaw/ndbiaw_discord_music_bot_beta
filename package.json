@@ -18,7 +18,6 @@
     "erit-ytdl": "^0.1.2",
     "ffmpeg-static": "^4.2.3",
     "lyrics-finder": "^21.0.5",
-    "discord.js-commando": "^0.10.0",
     "simple-youtube-api": "^5.1.1",
     "soundcloud-downloader": "^0.2.3",
     "string-progressbar": "^1.0.1",
