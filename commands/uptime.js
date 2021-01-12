@@ -1,7 +1,7 @@
 module.exports = {
   name: "uptime",
   aliases: ["u"],
-  description: "Kiểm tra thời gian bot online",
+  description: "Kiểm tra thời gian bot online.",
   execute(message) {
     let seconds = Math.floor(message.client.uptime / 1000);
     let minutes = Math.floor(seconds / 60);
