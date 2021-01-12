@@ -3,7 +3,7 @@ const { canModifyQueue } = require("../util/EvobotUtil");
 module.exports = {
   name: "volume",
   aliases: ["v"],
-  description: "Chỉnh âm lượng bài bài hát đang phát",
+  description: "Chỉnh âm lượng bài bài hát đang phát.",
   execute(message, args) {
     const queue = message.client.queue.get(message.guild.id);
 
