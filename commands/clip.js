@@ -2,12 +2,12 @@ const { PREFIX } = require("../util/EvobotUtil");
 
 module.exports = {
   name: "clip",
-  description: "Mở âm thanh từ Clip",
+  description: "Mở âm thanh từ Clip.",
   async execute(message, args) {
     const { channel } = message.member.voice;
     const queue = message.client.queue.get(message.guild.id);
 
-    if (!args.length) return message.reply(`Usage: ${PREFIX}clip <name>`).catch(console.error);
+    if (!args.length) return message.reply(`Sử dụng: ${PREFIX}clip <tên>`).catch(console.error);
     if (queue) return message.reply("Không thể phát clip vì có một hàng đợi đang hoạt động.");
     if (!channel) return message.reply("Bạn cần tham gia một kênh thoại trước!").catch(console.error);
 
