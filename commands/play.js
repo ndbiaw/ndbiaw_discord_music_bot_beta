@@ -10,7 +10,7 @@ module.exports = {
   name: "play",
   cooldown: 3,
   aliases: ["p"],
-  description: "Phát nhạc từ YouTube hoặc SoundCloud",
+  description: "Phát nhạc từ YouTube hoặc SoundCloud.",
   async execute(message, args) {
     const { channel } = message.member.voice;
 
